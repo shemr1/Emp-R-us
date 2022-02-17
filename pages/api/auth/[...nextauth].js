@@ -4,7 +4,6 @@ import clientPromise from "/lib/mongodb";
 import connectDB from "../../../lib/connectDB";
 import User from "../../../models/userModel";
 import bcrypt from "bcryptjs";
-
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
