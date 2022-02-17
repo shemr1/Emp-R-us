@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/link-passhref */
+/* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
 import styles from "../styles/Local.module.css";
 import { useSession, getSession } from "next-auth/react";
@@ -37,12 +39,13 @@ export default function Home({}) {
 			setInfo(data.data);
 		};
 
+		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useEffect(() => {
 			setLoading(true);
 
 			fetchdata();
 			setLoading(false);
-		}, []);
+		}, [fetchdata]);
 		if (!isLoading) {
 			console.log(info);
 			return (
@@ -55,6 +58,7 @@ export default function Home({}) {
 						</Link>
 						<div className={styles.container}>
 							{info.map((employee, idx) => (
+								// eslint-disable-next-line react/jsx-key
 								<div className={`grid grid-cols-3 gap-4 p-5`}>
 									<EmpCard key={idx} employee={employee} />
 								</div>
