@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import styles from "../styles/Local.module.css";
 import Image from "next/image";
@@ -51,7 +52,7 @@ const Navbar = () => {
 							<span className="navbar brand">Skill Bank</span>
 						</div>
 						<div className="collapse navbar-collapse d-flex justify-content-between text-light">
-							<ul className="nav navbar-nav nav-tabs mr-auto mx-auto ">
+							<ul className="nav navbar-nav  mr-auto mx-auto ">
 								<Link className="nav-item " href="/employees">
 									<a className="nav-link link-light">Employees</a>
 								</Link>
