@@ -22,10 +22,10 @@ const Navbar = () => {
 								<a className="nav-link ">Employees</a>
 							</Link>
 							<Link className="nav-item" href="/about">
-								<a>About</a>
+								<a className="nav-link ">About</a>
 							</Link>
 							<Link className="nav-item" href="/contact">
-								<a>Contact Us</a>
+								<a className="nav-link ">Contact Us</a>
 							</Link>
 						</ul>
 
