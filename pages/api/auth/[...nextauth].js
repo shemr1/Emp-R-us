@@ -88,8 +88,6 @@ export default NextAuth({
 					return res.status(401).json({ error: "Invalid credentials" });
 				}
 
-				const { email, _id, name, image } = user;
-
 				if (user) {
 					// Any object returned will be saved in `user` property of the JWT
 
