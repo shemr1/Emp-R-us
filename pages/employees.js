@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
@@ -24,7 +25,7 @@ export default function Home({}) {
 	if (status === "authenticated") {
 		const fetchdata = async () => {
 			const session = await getSession();
-			console.log(session.userId);
+
 			const res = await fetch(`http://localhost:3000/api/employee`, {
 				method: "GET",
 				headers: {
@@ -45,9 +46,9 @@ export default function Home({}) {
 
 			fetchdata();
 			setLoading(false);
-		}, [fetchdata]);
+		}, []);
+
 		if (!isLoading) {
-			console.log(info);
 			return (
 				<div>
 					<div className={styles.body}>
@@ -56,13 +57,16 @@ export default function Home({}) {
 						<Link href="/NewEmp">
 							<button className={styles.button}>Add Employee</button>
 						</Link>
-						<div className={styles.container}>
-							{info.map((employee, idx) => (
-								// eslint-disable-next-line react/jsx-key
-								<div className={`grid grid-cols-3 gap-4 p-5`}>
-									<EmpCard key={idx} employee={employee} />
-								</div>
-							))}
+						<br />
+						<div className="clearfix">
+							<div className="row">
+								{info.map((employee) => (
+									// eslint-disable-next-line react/jsx-key
+									<div className="col-md-4 animated fadeIn" key={employee._id}>
+										<EmpCard employee={employee} />
+									</div>
+								))}
+							</div>
 						</div>
 					</div>
 				</div>

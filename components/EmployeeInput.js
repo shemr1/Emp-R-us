@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 
-const Form = ({ formId, EmpForm, forNewEmp = true }) => {
+const Form = ({ formId }) => {
 	const router = useRouter();
 	const { data: session } = useSession();
 	console.log(session);
@@ -19,7 +19,7 @@ const Form = ({ formId, EmpForm, forNewEmp = true }) => {
 		age: 0,
 		department: "",
 		Contracted: false,
-		image_url: null,
+		image_url: undefined,
 		user: "",
 		session: "",
 	});
@@ -43,7 +43,7 @@ const Form = ({ formId, EmpForm, forNewEmp = true }) => {
 	const handleChange = (e) => {
 		const target = e.target;
 
-		const value = target.name === "Contracted" ? target.checked : target.value;
+		const value = target.value;
 		const name = target.name;
 
 		setForm({
@@ -54,7 +54,6 @@ const Form = ({ formId, EmpForm, forNewEmp = true }) => {
 
 	const handleImage = async (e) => {
 		const formim = e.currentTarget;
-		const target = e.target;
 
 		const fileInput = Array.from(formim.elements).find(
 			({ name }) => name === "image_url",
@@ -85,15 +84,14 @@ const Form = ({ formId, EmpForm, forNewEmp = true }) => {
 		e.preventDefault();
 		form.user = session.userId;
 		form.session = session;
+		form.Contracted === "on"
+			? (form.Contracted = true)
+			: (form.Contracted = false);
+		console.log(form.Contracted);
 		await handleImage(e);
 		console.log(form.image_url);
 
-		const errs = formValidate();
-		if (Object.keys(errs).length === 0) {
-			forNewEmp ? postData(form) : putData(form);
-		} else {
-			setErrors({ errs });
-		}
+		postData(form);
 	};
 
 	const formValidate = () => {
@@ -195,12 +193,6 @@ const Form = ({ formId, EmpForm, forNewEmp = true }) => {
 						Submit
 					</button>
 				</form>
-				<p>{message}</p>
-				<div>
-					{Object.keys(errors).map((err, index) => (
-						<li key={index}>{err}</li>
-					))}
-				</div>
 			</div>
 		</>
 	);
