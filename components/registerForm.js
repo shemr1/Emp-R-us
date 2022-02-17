@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
