@@ -4,7 +4,7 @@ import clientPromise from "/lib/mongodb";
 import connectDB from "../../../lib/connectDB";
 import User from "../../../models/userModel";
 import bcrypt from "bcryptjs";
-// import jwt from "jsonwebtoken";
+
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -87,13 +87,9 @@ export default NextAuth({
 
 				if (!doMatch) {
 					return res.status(401).json({ error: "Invalid credentials" });
-					// } else {
-					// 	const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
-					// 		expiresIn: "7d",
-					// 	});
-
-					const { email, _id, name, image } = user;
 				}
+
+				const { email, _id, name, image } = user;
 
 				if (user) {
 					// Any object returned will be saved in `user` property of the JWT
