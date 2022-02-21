@@ -4,7 +4,6 @@ import { getSession, useSession } from "next-auth/react";
 
 export default async function handler(req, res, session) {
 	const { method, headers } = req;
-	console.log(method, headers, session);
 
 	connectDB();
 

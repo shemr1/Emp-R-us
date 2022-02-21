@@ -3,6 +3,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Link from "next/link";
 import styles from "../styles/Local.module.css";
+import Fab from "@mui/material/Fab";
+import AddIcon from "@mui/icons-material/Add";
 import { useSession, getSession } from "next-auth/react";
 import EmpCard from "../components/employeeCard";
 import React, { useState, useEffect } from "react";
@@ -55,14 +57,17 @@ export default function Home({}) {
 						<h3>Employees</h3>
 
 						<Link href="/NewEmp">
-							<button className={styles.button}>Add Employee</button>
+							<Fab className={styles.button} variant="extended">
+								<AddIcon />
+								Add Employee
+							</Fab>
 						</Link>
 						<br />
 						<div className="clearfix">
 							<div className="row">
 								{info.map((employee) => (
 									// eslint-disable-next-line react/jsx-key
-									<div className="col-md-4 animated fadeIn" key={employee._id}>
+									<div className="col-md-3 animated fadeIn" key={employee._id}>
 										<EmpCard employee={employee} />
 									</div>
 								))}

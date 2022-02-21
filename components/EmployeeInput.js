@@ -141,6 +141,7 @@ const Form = ({ formId }) => {
 					<div>
 						<label htmlFor="department">Department</label>
 						<input
+							multiple
 							type="text"
 							maxLength="30"
 							name="department"

@@ -1,9 +1,13 @@
 import { SessionProvider, useSession } from "next-auth/react";
 import Head from "next/head";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
+import Router from "next/router";
+import NProgress from "nprogress"; //nprogress module
 import Layout from "../components/Layout";
 import "../styles/globals.css";
+
+Router.events.on("routeChangeStart", () => NProgress.start());
+Router.events.on("routeChangeComplete", () => NProgress.done());
+Router.events.on("routeChangeError", () => NProgress.done());
 
 export default function MyApp({ Component, pageProps }) {
 	return (
@@ -41,7 +45,8 @@ function Auth({ children }) {
 	const isUser = !!session?.user;
 	console.log(session); // -> undefined in server- but correct in client-console
 	React.useEffect(() => {
-		if (loading) return; // Do nothing while loading
+		if (loading) return;
+		console.log("Loading"); // Do nothing while loading
 		if (!isUser) signIn();
 	}, [isUser, loading]);
 
