@@ -52,26 +52,24 @@ export default function Home({}) {
 
 		if (!isLoading) {
 			return (
-				<div>
-					<div className={styles.body}>
-						<h3>Employees</h3>
+				<div className={styles.body}>
+					<h3>Employees</h3>
 
-						<Link href="/NewEmp">
-							<Fab className={styles.button} variant="extended">
-								<AddIcon />
-								Add Employee
-							</Fab>
-						</Link>
-						<br />
-						<div className="clearfix">
-							<div className="row">
-								{info.map((employee) => (
-									// eslint-disable-next-line react/jsx-key
-									<div className="col-md-3 animated fadeIn" key={employee._id}>
-										<EmpCard employee={employee} />
-									</div>
-								))}
-							</div>
+					<Link href="/NewEmp">
+						<Fab className={styles.button} variant="extended">
+							<AddIcon />
+							Add Employee
+						</Fab>
+					</Link>
+					<br />
+					<div className="clearfix">
+						<div className="row">
+							{info.map((employee) => (
+								// eslint-disable-next-line react/jsx-key
+								<div className="col-md-3 animated fadeIn" key={employee._id}>
+									<EmpCard employee={employee} />
+								</div>
+							))}
 						</div>
 					</div>
 				</div>

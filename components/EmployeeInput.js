@@ -21,7 +21,6 @@ const Form = ({ formId }) => {
 		Contracted: false,
 		image_url: undefined,
 		user: "",
-		session: "",
 	});
 
 	const postData = async (form) => {

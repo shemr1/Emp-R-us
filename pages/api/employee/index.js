@@ -28,6 +28,16 @@ export default async function handler(req, res, session) {
 				res.status(400).json({ success: false, msg: error.message });
 			}
 			break;
+		case "DELETE":
+			try {
+				await Emp.deleteOne({
+					_id: req.body,
+				});
+				res.status(201).json({ success: true });
+			} catch (e) {
+				res.status(400).json({ success: false, msg: e.message });
+			}
+			break;
 		default:
 			res.status(400).json({ success: false });
 			break;

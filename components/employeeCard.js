@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@mui/material/Modal";
-import Typography from "@material-ui/core/Typography";
+import IconButton from "@mui/material/IconButton";
+import Stack from "@mui/material/Stack";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import Router from "next/router";
 
 const EmpCard = ({ employee }) => {
 	const useStyles = makeStyles((theme) => ({
@@ -35,6 +39,7 @@ const EmpCard = ({ employee }) => {
 	function rand() {
 		return Math.round(Math.random() * 20) - 10;
 	}
+
 	function getModalStyle() {
 		const top = 50 + rand();
 		const left = 50 + rand();
@@ -45,6 +50,21 @@ const EmpCard = ({ employee }) => {
 		};
 	}
 
+	const deleteEmp = async (employee) => {
+		const res = await fetch(`http://localhost:3000/api/employee`, {
+			method: "DELETE",
+			headers: {
+				Accept: "application/json, text/plain, */*",
+				"User-Agent": "*",
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(employee._id),
+		});
+		const response = await res.json();
+		console.log(response);
+		Router.reload;
+	};
+
 	return (
 		<div className="card" style={{ width: "18rem" }}>
 			<div className="card-body">
@@ -54,6 +74,14 @@ const EmpCard = ({ employee }) => {
 
 				<h5 className="card-title ">{employee.name.toUpperCase()}</h5>
 				<p className="card-text">{employee.title}</p>
+				<Stack direction="row" spacing={2}>
+					<IconButton aria-label="edit">
+						<EditIcon />
+					</IconButton>
+					<IconButton aria-label="delete" onClick={() => deleteEmp(employee)}>
+						<DeleteIcon />
+					</IconButton>
+				</Stack>
 			</div>
 			<Modal
 				aria-labelledby="simple-modal-title"

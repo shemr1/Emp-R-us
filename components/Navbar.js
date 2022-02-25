@@ -46,7 +46,7 @@ const Navbar = () => {
 		return (
 			<>
 				<div className={styles.navbar}>
-					<nav className="navbar navbar-expand-md navbar-dark bg-dark mt-0">
+					<nav className="navbar navbar-expand-md navbar-dark bg-dark navbar-fixed-top mt-0 ">
 						<div className="navbar-brand d-flex">
 							<img src="/logo.png" alt="logo" width={30} height={30} />
 							<span className="navbar brand">Skill Bank</span>
